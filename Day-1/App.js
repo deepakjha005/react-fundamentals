@@ -1,3 +1,5 @@
+import ReactDOM from "react-dom/client";
+
 /**
  * how to create h1 tag in react.
  *
@@ -5,10 +7,14 @@
  * <h1>Hello World from Namaste react</h1>
  */
 
-// const createdElement = React.createElement("h1", {
-//     id:"heading",
-//     abc:"children" //
-// }, "Hello World from Namaste react");
+// const createdElement = React.createElement(
+//   "h1",
+//   {
+//     id: "heading",
+//     abc: "children", //
+//   },
+//   "Hello World from Namaste react"
+// );
 // const addedInRoot = ReactDOM.createRoot(document.getElementById("root"));
 // addedInRoot.render(createdElement);
 
@@ -48,14 +54,38 @@
  *
  */
 
-const nestedElement = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "hello I am first one"),
-    React.createElement("h1", {}, "I am second one"),
-    React.createElement("h1", {}, "I am third one"),
-  ])
+/*
+// const nestedElement = React.createElement(
+//   "div",
+//   { id: "parent" },
+//   React.createElement("div", { id: "child" }, [
+//     React.createElement("h1", { key: "1" }, "hello episode one  "),
+//     React.createElement("h1", { key: "2" }, "I am second one"),
+//     React.createElement("h1", { key: "3" }, "I am third one"),
+//   ])
+// );
+*/
+
+// JSX
+
+// const heading = <h1>Hello React From JSX</h1>;
+
+// React Component
+
+const HeadingComponent = () => (
+  <div className="heading">
+    <h2>This is heading component.</h2>
+  </div>
 );
+
+// React Component Composition
+//// This is what component composition
+const DescriptionComponent = ()=>(
+  <div className="description">
+    {HeadingComponent()}
+    <HeadingComponent/>
+    <h1>This is an DescriptionComponent</h1>
+  </div>
+)
 const nestedRoot = ReactDOM.createRoot(document.getElementById("root"));
-nestedRoot.render(nestedElement);
+nestedRoot.render(<DescriptionComponent />);

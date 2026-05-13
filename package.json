@@ -1,0 +1,31 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "react-fundamentals",
+  "homepage": "https://github.com/deepakjha005/react-fundamentals#readme",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "bugs": {
+    "url": "https://github.com/deepakjha005/react-fundamentals/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepakjha005/react-fundamentals.git"
+  },
+  "license": "ISC",
+  "author": "deepak jha",
+  "type": "module",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "browsersList": [
+    "Chrome >= 100"
+  ],
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  }
+}
