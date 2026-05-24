@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { HEADER_LOGO } from "../utils/constants";
 import { headerData } from "../utils/headerData";
 
@@ -11,7 +12,9 @@ const Header = () => {
         {headerData.map((item) => {
           return (
             <div key={item.id}>
-              <h3>{item.label}</h3>
+              <Link to={item.link}>
+                <h3>{item.label}</h3>
+              </Link>
             </div>
           );
         })}
