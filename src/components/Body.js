@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import NotFound from "./NotFound";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import useCheckOnlineHook from "./hooks/useCheckOnlineHook";
 
 const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
   const [updatedFilteredList, setUpdatedFilteredList] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const isOnline = useCheckOnlineHook();
   const filterList = (text) => {
     const updatedList = filteredList?.filter((res) =>
       res.info.name.toLowerCase().includes(text.toLowerCase())
@@ -35,6 +37,9 @@ const Body = () => {
       console.log("Error:", error);
     }
   };
+  if(!isOnline) return(
+    <h1>You are offline. Please check your internet connection</h1>
+  )
   if (filteredList.length === 0) {
     return <Shimmer />;
   }
