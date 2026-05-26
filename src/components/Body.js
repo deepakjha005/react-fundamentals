@@ -8,7 +8,7 @@ const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
   const [updatedFilteredList, setUpdatedFilteredList] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const isOnline = useCheckOnlineHook();
+  const isOnline = useCheckOnlineHook()
   const filterList = (text) => {
     const updatedList = filteredList?.filter((res) =>
       res.info.name.toLowerCase().includes(text.toLowerCase())

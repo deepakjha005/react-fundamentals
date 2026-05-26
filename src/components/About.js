@@ -1,5 +1,4 @@
 import React from "react";
-import FirstComponent from "./FirstComponent";
 
 // const About = () => {
 //   return (

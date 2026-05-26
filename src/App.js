@@ -5,6 +5,7 @@ import Body from "./components/Body";
 import Contact from "./components/Contact";
 import { Error } from "./components/Error";
 import Header from "./components/Header";
+import React, { Suspense } from "react";
 
 const App = () => {
   return (
@@ -14,6 +15,8 @@ const App = () => {
     </div>
   );
 };
+const HeavyComponent = React.lazy(()=>import("./components/HeavyModule"));
+
 const appRoute = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +33,10 @@ const appRoute = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/lazyLoading",
+        element: <Suspense fallback={'loading.......'}><HeavyComponent/></Suspense>,
       },
     ],
     errorElement: <Error />,

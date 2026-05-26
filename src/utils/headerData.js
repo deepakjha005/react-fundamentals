@@ -19,4 +19,9 @@ export const headerData = [
     label: "Cart",
     link: "./cart",
   },
+  {
+    id: 5,
+    label: "Heavy Module",
+    link: "./lazyLoading",
+  },
 ];
