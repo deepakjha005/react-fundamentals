@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NotFound from "./NotFound";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
@@ -8,7 +9,8 @@ const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
   const [updatedFilteredList, setUpdatedFilteredList] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const isOnline = useCheckOnlineHook()
+  const navigate = useNavigate();
+  const isOnline = useCheckOnlineHook();
   const filterList = (text) => {
     const updatedList = filteredList?.filter((res) =>
       res.info.name.toLowerCase().includes(text.toLowerCase())
@@ -37,9 +39,8 @@ const Body = () => {
       console.log("Error:", error);
     }
   };
-  if(!isOnline) return(
-    <h1>You are offline. Please check your internet connection</h1>
-  )
+  if (!isOnline)
+    return <h1>You are offline. Please check your internet connection</h1>;
   if (filteredList.length === 0) {
     return <Shimmer />;
   }
@@ -61,7 +62,10 @@ const Body = () => {
       ) : (
         <div className="card-cont">
           {updatedFilteredList.map((item) => (
-            <div key={item?.info?.id}>
+            <div
+              key={item?.info?.id}
+              onClick={() => navigate("/restaurantMenu/" + item?.info?.id)}
+            >
               <RestaurantCard data={item} />
             </div>
           ))}
