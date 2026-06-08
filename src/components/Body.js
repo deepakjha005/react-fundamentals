@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NotFound from "./NotFound";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withVegRestaurantCard } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import useCheckOnlineHook from "./hooks/useCheckOnlineHook";
 
@@ -11,6 +11,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
   const isOnline = useCheckOnlineHook();
+  const HighOrderComponent = withVegRestaurantCard(RestaurantCard);
   const filterList = (text) => {
     const updatedList = filteredList?.filter((res) =>
       res.info.name.toLowerCase().includes(text.toLowerCase())
@@ -66,7 +67,11 @@ const Body = () => {
               key={item?.info?.id}
               onClick={() => navigate("/restaurantMenu/" + item?.info?.id)}
             >
-              <RestaurantCard data={item} />
+              {item.info.veg ? (
+                <HighOrderComponent data={item} />
+              ) : (
+                <RestaurantCard data={item} />
+              )}
             </div>
           ))}
         </div>

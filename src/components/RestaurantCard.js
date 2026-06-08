@@ -8,6 +8,7 @@ const RestaurantCard = (props) => {
   } = props.data?.info;
   return (
     <div className="restaurant-container">
+      <label className="m-1 p-2 absolute bg-black text-white">Non-Veg</label>
       <div>
         <img
           src={
@@ -25,5 +26,16 @@ const RestaurantCard = (props) => {
       </div>
     </div>
   );
+};
+
+export const withVegRestaurantCard = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="m-1 p-2 absolute bg-black text-white">Veg</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
 };
 export default RestaurantCard;
