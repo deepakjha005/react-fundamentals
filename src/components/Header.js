@@ -4,11 +4,11 @@ import { headerData } from "../utils/headerData";
 
 const Header = () => {
   return (
-    <div className="header-component">
-      <div className="img-container">
+    <div className="flex justify-between align-middle">
+      <div className="w-14">
         <img src={HEADER_LOGO} className="img-style" />
       </div>
-      <div className="nav-container">
+      <div className="flex">
         {headerData.map((item) => {
           return (
             <div key={item.id}>
