@@ -45,27 +45,33 @@ const Body = () => {
   if (filteredList.length === 0) {
     return <Shimmer />;
   }
+  const onCardClick = (id) => {
+    navigate("/restaurantMenu/" + id);
+  };
   return (
     <div className="body-container">
-      <div className="search-container">
+      <div className=" mx-8 mb-5 flex">
         <input
           placeholder="Search"
-          className="search-bar"
+          className="h-9 w-48 border border-gray-400 rounded-lg"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
             filterList(e.target.value);
           }}
         />
+        <button className="bg-blue-400 ml-2 rounded-lg shadow-sm text-sm w-24">
+          Search
+        </button>
       </div>
       {updatedFilteredList.length === 0 ? (
         <NotFound />
       ) : (
-        <div className="card-cont">
+        <div className=" flex flex-wrap justify-start ml-8">
           {updatedFilteredList.map((item) => (
             <div
               key={item?.info?.id}
-              onClick={() => navigate("/restaurantMenu/" + item?.info?.id)}
+              onClick={() => onCardClick(item?.info?.id)}
             >
               {item.info.veg ? (
                 <HighOrderComponent data={item} />
