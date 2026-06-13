@@ -1,4 +1,5 @@
 import React from "react";
+import userContext from "./UserContext";
 
 // const About = () => {
 //   return (
@@ -34,6 +35,9 @@ class About extends React.Component {
         <div>
           <h1>This is the about Us Page</h1>
         </div>
+        <userContext.Consumer>
+          {(data) => <h1>{data.userName}</h1>}
+        </userContext.Consumer>
         {/* <UserClassBasedComponent
           name={
             "Class Based Component used class keywords and extends from React Component."

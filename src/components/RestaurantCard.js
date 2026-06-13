@@ -1,3 +1,5 @@
+import user from "./UserContext";
+
 const RestaurantCard = (props) => {
   const {
     name,
@@ -7,6 +9,7 @@ const RestaurantCard = (props) => {
     veg,
     sla: { deliveryTime },
   } = props.data?.info;
+  user.name = "name has changed";
   return (
     <div className="mb-2 w-[250px] h-[400px] mr-4 border border-gray-300 rounded-xl shadow-md">
       {}
