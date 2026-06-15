@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from "./components/About";
 import Body from "./components/Body";
@@ -9,6 +10,7 @@ import { Error } from "./components/Error";
 import Header from "./components/Header";
 import RestaurantMenu from "./components/RestaurantMenu";
 import userContext from "./components/UserContext";
+import appStore from "./redux/appStore";
 const App = () => {
   const [updateUserName, setUpdateUserName] = useState();
   const [cartItem, setCartItem] = useState({
@@ -25,19 +27,21 @@ const App = () => {
   }, []);
 
   return (
-    <userContext.Provider
-      value={{
-        userName: updateUserName,
-        setUpdateUserName,
-        cartItem: cartItem,
-        setCartItem,
-      }}
-    >
-      <div>
-        <Header />
-        <Outlet />
-      </div>
-    </userContext.Provider>
+    <Provider store={appStore}>
+      <userContext.Provider
+        value={{
+          userName: updateUserName,
+          setUpdateUserName,
+          cartItem: cartItem,
+          setCartItem,
+        }}
+      >
+        <div>
+          <Header />
+          <Outlet />
+        </div>
+      </userContext.Provider>
+    </Provider>
   );
 };
 const HeavyComponent = React.lazy(() => import("./components/HeavyModule"));

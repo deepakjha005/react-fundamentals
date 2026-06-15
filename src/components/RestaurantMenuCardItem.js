@@ -1,20 +1,24 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import userContext from "./UserContext";
+// import { useContext, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems, removeItem } from "../redux/cartSlice";
+// import userContext from "./UserContext";
+const RestaurantMenuCardItem = ({ itemCard, showRemove }) => {
+  // const { setCartItem } = useContext(userContext);
+  // const [showToast, setShowToast] = useState(false);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store.cart.items);
 
-const RestaurantMenuCardItem = ({ itemCard }) => {
-  const { setCartItem } = useContext(userContext);
-  const navigate = useNavigate();
-  const [showToast, setShowToast] = useState(false);
-
-  const addToCart = ({ name, itemName, price }) => {
-    setShowToast(true);
-    setCartItem({
-      restaurantName: name,
-      itemName: itemName,
-      price: price,
-    });
+  const addToCart = (item) => {
+    if (showRemove) {
+      dispatch(removeItem(item?.card?.info?.id));
+      return;
+    }
+    dispatch(addItems(item));
   };
+  useEffect(() => {
+    console.log(cartItems, "cartItems");
+  }, [cartItems]);
   return (
     <div className="flex justify-center">
       <div className="w-[100%]">
@@ -39,28 +43,22 @@ const RestaurantMenuCardItem = ({ itemCard }) => {
               />
               <button
                 className="absolute bottom-1 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-lg shadow-md h-10 cursor-pointer"
-                onClick={() =>
-                  addToCart({
-                    name: "haldiram",
-                    itemName: item?.card?.info?.name,
-                    price: item?.card?.info?.price / 100,
-                  })
-                }
+                onClick={() => addToCart(item)}
               >
-                Add
+                {showRemove ? "Remove" : "ADD"}
               </button>
             </div>
           </div>
         ))}
       </div>
-      {showToast && (
+      {/* {showToast && (
         <div
           className="fixed bottom-20  bg-gray-400 text-black px-4 py-2 rounded-lg"
           onClick={() => navigate("/cart")}
         >
           View Cart
         </div>
-      )}
+      )} */}
     </div>
   );
 };
