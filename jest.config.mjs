@@ -195,6 +195,9 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  transform: {
+    "^.+\\.[jt]sx?$": "babel-jest",
+  },
 };
 
 export default config;

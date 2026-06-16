@@ -53,7 +53,7 @@ const Body = () => {
       <div className=" mx-8 mb-5 flex">
         <input
           placeholder="Search"
-          className="h-9 w-48 border border-gray-400 rounded-lg"
+          className="h-9 w-48 border border-gray-400 rounded-lg p-2"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
