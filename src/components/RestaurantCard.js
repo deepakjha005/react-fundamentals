@@ -11,7 +11,10 @@ const RestaurantCard = (props) => {
   } = props.data?.info;
   user.name = "name has changed";
   return (
-    <div className="mb-2 w-[250px] h-[400px] mr-4 border border-gray-300 rounded-xl shadow-md">
+    <div
+      className="mb-2 w-[250px] h-[400px] mr-4 border border-gray-300 rounded-xl shadow-md"
+      data-testid="resCard"
+    >
       {}
       <label className="m-1 p-2 absolute bg-gray-500 text-white rounded-md">
         {veg ? "Veg" : "Non-Veg"}

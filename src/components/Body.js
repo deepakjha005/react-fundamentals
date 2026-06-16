@@ -19,7 +19,6 @@ const Body = () => {
     setUpdatedFilteredList(updatedList);
   };
   useEffect(() => {
-    console.log("called after");
     fetchData();
   }, []);
   const fetchData = async () => {
@@ -52,15 +51,22 @@ const Body = () => {
     <div className="body-container">
       <div className=" mx-8 mb-5 flex">
         <input
+          data-testid="searchInput"
           placeholder="Search"
           className="h-9 w-48 border border-gray-400 rounded-lg p-2"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
-            filterList(e.target.value);
           }}
         />
-        <button className="bg-blue-400 ml-2 rounded-lg shadow-sm text-sm w-24">
+        <button
+          data-testid="searchButton"
+          className="bg-blue-400 ml-2 rounded-lg shadow-sm text-sm w-24"
+          onClick={() => {
+            setSearchText(searchText);
+            filterList(searchText);
+          }}
+        >
           Search
         </button>
       </div>

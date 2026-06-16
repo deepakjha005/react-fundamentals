@@ -4,7 +4,7 @@ import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const [menuData, setMenuData] = useState();
-  const [showIndex, setShowIndex] = useState(0);
+  const [showIndex, setShowIndex] = useState(null);
   const { id } = useParams();
   useEffect(() => {
     fetchMenuData();
@@ -15,10 +15,6 @@ const RestaurantMenu = () => {
         "https://namastedev.com/api/v1/listRestaurantMenu/" + id
       );
       const json = await response.json();
-      console.log(
-        json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards,
-        "response"
-      );
       const filterMenuData =
         json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
           (res) =>
@@ -26,7 +22,6 @@ const RestaurantMenu = () => {
             "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
         );
       setMenuData(filterMenuData);
-      console.log(menuData, "menu data");
     } catch (error) {
       console.log("Error:", error);
     }

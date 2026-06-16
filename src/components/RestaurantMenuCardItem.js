@@ -1,13 +1,10 @@
-// import { useContext, useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItems, removeItem } from "../redux/cartSlice";
 // import userContext from "./UserContext";
 const RestaurantMenuCardItem = ({ itemCard, showRemove }) => {
   // const { setCartItem } = useContext(userContext);
   // const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
-  const cartItems = useSelector((store) => store.cart.items);
 
   const addToCart = (item) => {
     if (showRemove) {
@@ -16,16 +13,14 @@ const RestaurantMenuCardItem = ({ itemCard, showRemove }) => {
     }
     dispatch(addItems(item));
   };
-  useEffect(() => {
-    console.log(cartItems, "cartItems");
-  }, [cartItems]);
   return (
     <div className="flex justify-center">
       <div className="w-[100%]">
-        {itemCard.map((item) => (
+        {itemCard?.map((item) => (
           <div
             className="bg-gray-200 mt-3 shadow-t-sm rounded-t-lg  flex justify-between m-auto border-t-2 border-r-2 border-gray-300"
             key={item?.card?.info?.id}
+            data-testid="menuCardItem"
           >
             <div className="my-auto">
               <p className="text-sm ml-2">{item?.card?.info?.name}</p>
